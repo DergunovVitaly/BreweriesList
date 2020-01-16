@@ -20,37 +20,36 @@ class BreweriesListViewController: UIViewController {
     
     override func loadView() {
         view = contentView
+        contentView.tableView.dataSource = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setApperanceForNavBar()
+        setApperanceForNavBar(backgroundColor: R.color.darkGrassGreen())
         setNavigationController()
-        setupSearchController()
     }
     
     private func setNavigationController() {
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.tintColor = .white
-    }
-    
-    private func setupSearchController() {
-//        searchController.searchResultsUpdater = self
-        if #available(iOS 13.0, *) {
-            searchController.searchBar.searchTextField.backgroundColor = .white
-            searchController.searchBar.searchTextField.tintColor = R.color.darkGrassGreen()
-        } else {
-            for textField in searchController.searchBar.subviews.first!.subviews where textField is UITextField {
-                textField.subviews.first?.backgroundColor = .white
-                textField.subviews.first?.layer.cornerRadius = 10.5
-                textField.subviews.first?.layer.masksToBounds = true
-                textField.tintColor = R.color.darkGrassGreen()
-            }
-        }
-        searchController.obscuresBackgroundDuringPresentation = false
+        title = R.string.localizable.breweries()
         searchController.searchBar.placeholder = "Search"
         definesPresentationContext = true
         navigationItem.searchController = searchController
-        
+        searchController.searchBar.setCenteredPlaceHolder()
+        searchController.searchBar.setupSearchBar()
+    }
+}
+
+extension BreweriesListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 9
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BreweriesListCell.self))
+            as? BreweriesListCell else { return UITableViewCell() }
+        return cell
     }
 }

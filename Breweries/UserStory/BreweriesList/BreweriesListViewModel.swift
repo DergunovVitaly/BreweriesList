@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import Moya
+
+class BreweriesListViewModel {
+    
+    static func fetch(completion: @escaping (Result<BreweryModel, Error>) -> ()) {
+        
+    }
+}

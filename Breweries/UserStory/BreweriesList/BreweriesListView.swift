@@ -9,7 +9,9 @@
 import UIKit
 
 class BreweriesListView: UIView {
+    
     let tableView = UITableView()
+    private let imageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,12 +24,24 @@ class BreweriesListView: UIView {
     
     private func setupLayout() {
         
+        backgroundColor = .white
+        
+        addSubview(imageView)
+        imageView.image = R.image.manWithBear()
+        imageView.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize(width: 145, height: 245))
+            make.bottom.trailing.equalToSuperview()
+        }
+        
+        tableView.register(BreweriesListCell.self, forCellReuseIdentifier: String(describing: BreweriesListCell.self))
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 70
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .clear
         addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        
     }
 }
