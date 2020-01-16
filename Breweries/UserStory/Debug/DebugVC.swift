@@ -64,7 +64,7 @@ class DebugVC: UIViewController {
             switch row {
             case .signIn:
             let breweriesListVC = UINavigationController(rootViewController: BreweriesListViewController())
-            self.navigationController?.pushViewController(breweriesListVC, animated: true)
+            self.present(breweriesListVC, animated: true, completion: nil)
             }
         }
     }

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         VendorService.start(options: launchOptions)
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        AppRouter().newState(.start)
+        window?.rootViewController = UINavigationController(rootViewController: BreweriesListViewController())
         return true
     }
 }

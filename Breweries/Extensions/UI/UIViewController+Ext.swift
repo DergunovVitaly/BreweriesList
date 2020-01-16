@@ -27,12 +27,11 @@ extension UIViewController {
         }
         dismiss(animated: animated)
     }
-    
     func setApperanceForNavBar() {
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.backgroundColor = R.color.darkGrassGreen()
-            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
             navigationItem.standardAppearance = appearance
             navigationItem.scrollEdgeAppearance = appearance
             navigationController?.navigationBar.tintColor = .white
