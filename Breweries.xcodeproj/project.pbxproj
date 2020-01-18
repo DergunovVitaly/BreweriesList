@@ -27,6 +27,7 @@
 		1F8E624D23D3520B000F28E3 /* BreweryDataBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E624C23D3520B000F28E3 /* BreweryDataBaseModel.swift */; };
 		1F8E624F23D35F75000F28E3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E624E23D35F75000F28E3 /* NetworkManager.swift */; };
 		1F8E625123D36046000F28E3 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E625023D36046000F28E3 /* AlertViewController.swift */; };
+		1FC8547023D38488004E50BA /* BreweryUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC8546F23D38488004E50BA /* BreweryUILabel.swift */; };
 		1FEC457823CF8ABE0023939A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC457723CF8ABE0023939A /* R.generated.swift */; };
 		5B4D669A23685E050080195C /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4D667923685E040080195C /* UIViewController+Ext.swift */; };
 		5B4D66A123685E050080195C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B4D668423685E040080195C /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		1F8E624C23D3520B000F28E3 /* BreweryDataBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BreweryDataBaseModel.swift; path = Breweries/Services/DataBase/BreweryDataBaseModel.swift; sourceTree = SOURCE_ROOT; };
 		1F8E624E23D35F75000F28E3 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1F8E625023D36046000F28E3 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		1FC8546F23D38488004E50BA /* BreweryUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweryUILabel.swift; sourceTree = "<group>"; };
 		1FEC457723CF8ABE0023939A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		2A1E77331F384BFC006C84D4 /* Breweries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Breweries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1E77471F384BFD006C84D4 /* BreweriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreweriesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,7 @@
 			children = (
 				1F8E625023D36046000F28E3 /* AlertViewController.swift */,
 				1F19073823D097B3003DE597 /* Constants.swift */,
+				1FC8546F23D38488004E50BA /* BreweryUILabel.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B4D66A823685E050080195C /* AppDelegate.swift in Sources */,
+				1FC8547023D38488004E50BA /* BreweryUILabel.swift in Sources */,
 				1F8E625123D36046000F28E3 /* AlertViewController.swift in Sources */,
 				1F19073923D097B3003DE597 /* Constants.swift in Sources */,
 				1F8E624B23D3502B000F28E3 /* DataBaseService.swift in Sources */,

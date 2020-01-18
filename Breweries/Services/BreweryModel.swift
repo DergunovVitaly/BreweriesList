@@ -18,7 +18,6 @@ struct BreweryModelElement: Codable {
     let country: String?
     let longitude, latitude, phone: String?
     let websiteURL: String?
-    let updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -27,7 +26,6 @@ struct BreweryModelElement: Codable {
         case postalCode = "postal_code"
         case country, longitude, latitude, phone
         case websiteURL = "website_url"
-        case updatedAt = "updated_at"
     }
     
     static func modelFromDataBse(model: BreweryDataBaseModel) -> BreweryModelElement {
@@ -42,8 +40,7 @@ struct BreweryModelElement: Codable {
                                           longitude: model.longitude,
                                           latitude: model.latitude,
                                           phone: model.phone,
-                                          websiteURL: model.websiteURL,
-                                          updatedAt: model.updatedAt)
+                                          websiteURL: model.websiteURL)
         return newItem
     }
 }

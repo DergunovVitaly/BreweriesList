@@ -47,7 +47,7 @@ extension NetworkService: TargetType {
         case .getBreweries:
             return .requestPlain
         case .searchBreweries(let name):
-            return .requestParameters(parameters: ["by_name" : name], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["by_name": name], encoding: URLEncoding.default)
         }
     }
     

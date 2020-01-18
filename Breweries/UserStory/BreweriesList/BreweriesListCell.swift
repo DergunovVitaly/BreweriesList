@@ -21,12 +21,12 @@ class BreweriesListCell: UITableViewCell {
     private var longitudeString: String?
     private let backgroundContentView = UIView()
     private let breweryNameLabel = UILabel()
-    private let breweryPhoneNumberLabel = UILabel()
-    private let breweryWebSiteLabel = UILabel()
-    private let breweryCountryLabel = UILabel()
-    private let breweryStateLabel = UILabel()
-    private let breweryCityLabel = UILabel()
-    private let breweryStreetLabel = UILabel()
+    private let breweryPhoneNumberLabel = BreweryUILabel()
+    private let breweryWebSiteLabel = BreweryUILabel()
+    private let breweryCountryLabel = BreweryUILabel()
+    private let breweryStateLabel = BreweryUILabel()
+    private let breweryCityLabel = BreweryUILabel()
+    private let breweryStreetLabel = BreweryUILabel()
     private let showOnMapButton = UIButton()
     
     weak var delegate: BreweriesListCellDelegate?
@@ -43,23 +43,33 @@ class BreweriesListCell: UITableViewCell {
     func update(viewModel: BreweryModelElement) {
         breweryNameLabel.text = viewModel.name
         breweryPhoneNumberLabel.addCustomColorTo(text: viewModel.phone ?? "",
-                                                                 prefix: Localizable.phone(),
-                                                                 color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
+                                                 prefix: Localizable.phone(),
+                                                 color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
         breweryCityLabel.addCustomColorTo(text: viewModel.city ?? "",
-                                                          prefix: Localizable.city(),
-                                                          color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
+                                          prefix: Localizable.city(),
+                                          color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
         breweryCountryLabel.addCustomColorTo(text: viewModel.country ?? "",
-                                                             prefix: Localizable.country(),
-                                                             color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
+                                             prefix: Localizable.country(),
+                                             color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
         breweryStateLabel.addCustomColorTo(text: viewModel.state ?? "",
-                                                           prefix: Localizable.state(),
-                                                           color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
+                                           prefix: Localizable.state(),
+                                           color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
         breweryStreetLabel.addCustomColorTo(text: viewModel.street ?? "",
-                                                            prefix: Localizable.street(),
-                                                            color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
+                                            prefix: Localizable.street(),
+                                            color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
         breweryWebSiteLabel.addCustomColorTo(text: viewModel.websiteURL ?? "",
-                                                             prefix: Localizable.webSite(),
-                                                             color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
+                                             prefix: Localizable.webSite(),
+                                             color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
+        
+        //TODO: Check for an empty value, such a response from the server
+        breweryWebSiteLabel.isHidden = viewModel.websiteURL == ""
+        breweryPhoneNumberLabel.isHidden = viewModel.phone == ""
+        breweryCityLabel.isHidden = viewModel.city == ""
+        breweryCountryLabel.isHidden = viewModel.country == ""
+        breweryStateLabel.isHidden = viewModel.state == ""
+        breweryStreetLabel.isHidden = viewModel.street == ""
+        showOnMapButton.isHidden = viewModel.latitude == ""
+        
         breweryURL = URL(string: viewModel.websiteURL ?? "")
         latitudeString = viewModel.latitude
         longitudeString = viewModel.longitude
@@ -73,15 +83,7 @@ class BreweriesListCell: UITableViewCell {
         backgroundContentView.layer.cornerRadius = 10
         backgroundContentView.backgroundColor = R.color.white()
         breweryWebSiteLabel.isUserInteractionEnabled = true
-        
-        let labelFont: UIFont = .systemFont(ofSize: 10, weight: .medium)
-        breweryPhoneNumberLabel.font = labelFont
-        breweryWebSiteLabel.font = labelFont
-        breweryCountryLabel.font = labelFont
-        breweryStateLabel.font = labelFont
-        breweryCityLabel.font = labelFont
-        breweryStreetLabel.font = labelFont
-        
+    
         contentView.addSubview(backgroundContentView)
         backgroundContentView.snp.makeConstraints { (make) in
             make.edges.equalTo(UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12))

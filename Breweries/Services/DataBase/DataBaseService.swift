@@ -16,14 +16,14 @@ class DataBaseService {
             guard let realm = try? Realm() else { return }
             let newItem = BreweryDataBaseModel.dataBaseModelFrom(model: breweryModel)
             try? realm.write {
-                realm.add(newItem)
+                realm.add(newItem, update: Realm.UpdatePolicy.modified)
             }
         }
     }
     
     func readFromDataBase() -> BreweryModel {
         guard let realm = try? Realm() else { return [] }
-        let breweries = realm.objects(BreweryDataBaseModel.self).sorted(byKeyPath: "createdAt", ascending: false)
+        let breweries = realm.objects(BreweryDataBaseModel.self).sorted(byKeyPath: "name", ascending: false)
         let items = breweries.map { BreweryModelElement.modelFromDataBse(model: $0) }
         return Array(items)
     }
