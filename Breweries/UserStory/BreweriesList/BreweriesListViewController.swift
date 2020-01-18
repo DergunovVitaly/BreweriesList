@@ -11,7 +11,8 @@ import UIKit
 
 class BreweriesListViewController: UIViewController {
     private let contentView = BreweriesListView()
-    
+    private let viewModel: RequestFetch = BreweriesListViewModel()
+    private var viewModelArray = BreweryModel()
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
@@ -27,6 +28,16 @@ class BreweriesListViewController: UIViewController {
         super.viewDidLoad()
         setApperanceForNavBar(backgroundColor: R.color.darkGrassGreen())
         setNavigationController()
+        viewModel.fetch { [unowned self] (result) in
+            switch result {
+            case .success(let brewery):
+                print(brewery)
+                self.viewModelArray = brewery
+                self.contentView.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     private func setNavigationController() {
@@ -34,22 +45,22 @@ class BreweriesListViewController: UIViewController {
             [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.tintColor = .white
         title = R.string.localizable.breweries()
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = Localizable.search()
         definesPresentationContext = true
-        navigationItem.searchController = searchController
-        searchController.searchBar.setCenteredPlaceHolder()
         searchController.searchBar.setupSearchBar()
+        navigationItem.searchController = searchController
     }
 }
 
 extension BreweriesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return viewModelArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BreweriesListCell.self))
             as? BreweriesListCell else { return UITableViewCell() }
+        cell.update(viewModel: viewModelArray[indexPath.row])
         return cell
     }
 }

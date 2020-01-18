@@ -35,6 +35,9 @@ extension UIViewController {
             navigationItem.standardAppearance = appearance
             navigationItem.scrollEdgeAppearance = appearance
             navigationController?.navigationBar.tintColor = .white
+        } else {
+            navigationController?.navigationBar.barTintColor = backgroundColor
+            navigationController?.navigationBar.tintColor = .white
         }
     }
 }

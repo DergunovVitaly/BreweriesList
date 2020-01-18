@@ -38,10 +38,12 @@ class BreweriesListView: UIView {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 70
         tableView.backgroundColor = .clear
+        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
+        tableView.showsVerticalScrollIndicator = false
+        
         addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        
     }
 }

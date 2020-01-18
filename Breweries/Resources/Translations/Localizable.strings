@@ -12,3 +12,10 @@
 "common.error" = "Error";
 "ok" = "ok";
 "breweries" = "Breweries";
+"phone" = "Phone: ";
+"search" = "Search";
+"city" = "City: ";
+"country" = "Country: ";
+"state" = "State: ";
+"street" = "Street: ";
+"webSite" = "Website: ";

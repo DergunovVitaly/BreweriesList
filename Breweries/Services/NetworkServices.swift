@@ -8,11 +8,11 @@
 
 import Moya
 
-enum NetworkSirvice {
+enum NetworkService {
     case getBreweries
 }
 
-extension NetworkSirvice: TargetType {
+extension NetworkService: TargetType {
     public var baseURL: URL {
         let url = URL(string: "https://api.openbrewerydb.org")
         return url!
@@ -38,4 +38,3 @@ extension NetworkSirvice: TargetType {
         ["Content-type": "application/json"]
     }
 }
-

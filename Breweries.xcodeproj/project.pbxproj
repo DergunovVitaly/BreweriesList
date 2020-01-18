@@ -12,6 +12,10 @@
 		1F19073923D097B3003DE597 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F19073823D097B3003DE597 /* Constants.swift */; };
 		1F19073B23D09968003DE597 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F19073A23D09968003DE597 /* NetworkServices.swift */; };
 		1F19073D23D0A1FC003DE597 /* BreweryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F19073C23D0A1FC003DE597 /* BreweryModel.swift */; };
+		1F19073F23D0AFB3003DE597 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F19073E23D0AFB3003DE597 /* Request.swift */; };
+		1F19074123D1E5EA003DE597 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F19074023D1E5EA003DE597 /* UILabel+Ext.swift */; };
+		1F19074323D1E6CD003DE597 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F19074223D1E6CD003DE597 /* String+Ext.swift */; };
+		1F19074623D2023D003DE597 /* IowanOldStyleBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F19074523D2023D003DE597 /* IowanOldStyleBold.otf */; };
 		1F501DA823D0615E00E79FE3 /* BreweriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F501DA723D0615E00E79FE3 /* BreweriesListViewController.swift */; };
 		1F501DAA23D0628800E79FE3 /* BreweriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F501DA923D0628800E79FE3 /* BreweriesListView.swift */; };
 		1F501DAC23D062A600E79FE3 /* BreweriesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F501DAB23D062A600E79FE3 /* BreweriesListCell.swift */; };
@@ -51,6 +55,11 @@
 		1F19073823D097B3003DE597 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1F19073A23D09968003DE597 /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
 		1F19073C23D0A1FC003DE597 /* BreweryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BreweryModel.swift; path = Breweries/Services/BreweryModel.swift; sourceTree = SOURCE_ROOT; };
+		1F19073E23D0AFB3003DE597 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		1F19074023D1E5EA003DE597 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		1F19074223D1E6CD003DE597 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		1F19074523D2023D003DE597 /* IowanOldStyleBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IowanOldStyleBold.otf; sourceTree = "<group>"; };
+		1F19074823D22618003DE597 /* IowanOldStBTRoman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = IowanOldStBTRoman.otf; sourceTree = "<group>"; };
 		1F501DA723D0615E00E79FE3 /* BreweriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweriesListViewController.swift; sourceTree = "<group>"; };
 		1F501DA923D0628800E79FE3 /* BreweriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweriesListView.swift; sourceTree = "<group>"; };
 		1F501DAB23D062A600E79FE3 /* BreweriesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweriesListCell.swift; sourceTree = "<group>"; };
@@ -111,6 +120,15 @@
 				1F19073823D097B3003DE597 /* Constants.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1F19074423D20139003DE597 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1F19074823D22618003DE597 /* IowanOldStBTRoman.otf */,
+				1F19074523D2023D003DE597 /* IowanOldStyleBold.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		1F501DA623D060F600E79FE3 /* BreweriesList */ = {
@@ -215,7 +233,9 @@
 				5B4D667623685E040080195C /* UIImage+Ext.swift */,
 				1F19073523D07E3F003DE597 /* UISearchBar+Ext.swift */,
 				5B4D667723685E040080195C /* MBProgressHUD+Ext.swift */,
+				1F19074023D1E5EA003DE597 /* UILabel+Ext.swift */,
 				5B4D667823685E040080195C /* UIScreen+Ext.swift */,
+				1F19074223D1E6CD003DE597 /* String+Ext.swift */,
 				5B4D667923685E040080195C /* UIViewController+Ext.swift */,
 				5B4D667A23685E040080195C /* UINavigationBar+Ext.swift */,
 			);
@@ -234,6 +254,7 @@
 		5B4D667E23685E040080195C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1F19074423D20139003DE597 /* Fonts */,
 				1F19073723D097A1003DE597 /* Helpers */,
 				1F501DAF23D0653400E79FE3 /* Colors */,
 				5B4D667F23685E040080195C /* Generated */,
@@ -272,6 +293,7 @@
 			children = (
 				5B4D668923685E050080195C /* VendorService.swift */,
 				1F19073A23D09968003DE597 /* NetworkServices.swift */,
+				1F19073E23D0AFB3003DE597 /* Request.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -415,6 +437,7 @@
 			files = (
 				5B4D66A323685E050080195C /* Localizable.strings in Resources */,
 				1F501DB123D0656A00E79FE3 /* Colors.xcassets in Resources */,
+				1F19074623D2023D003DE597 /* IowanOldStyleBold.otf in Resources */,
 				5B4D66A123685E050080195C /* Assets.xcassets in Resources */,
 				5B4D66A523685E050080195C /* Configuration.plist in Resources */,
 			);
@@ -557,13 +580,16 @@
 				5B4D669B23685E050080195C /* UINavigationBar+Ext.swift in Sources */,
 				1F501DAE23D062BD00E79FE3 /* BreweriesListViewModel.swift in Sources */,
 				5B4D669723685E050080195C /* UIImage+Ext.swift in Sources */,
+				1F19074323D1E6CD003DE597 /* String+Ext.swift in Sources */,
 				1FEC457823CF8ABE0023939A /* R.generated.swift in Sources */,
 				5B4D66A423685E050080195C /* VendorService.swift in Sources */,
 				1F19073623D07E3F003DE597 /* UISearchBar+Ext.swift in Sources */,
+				1F19074123D1E5EA003DE597 /* UILabel+Ext.swift in Sources */,
 				1F19073B23D09968003DE597 /* NetworkServices.swift in Sources */,
 				5B4D669C23685E050080195C /* Date+Ext.swift in Sources */,
 				1F501DA823D0615E00E79FE3 /* BreweriesListViewController.swift in Sources */,
 				1F501DAC23D062A600E79FE3 /* BreweriesListCell.swift in Sources */,
+				1F19073F23D0AFB3003DE597 /* Request.swift in Sources */,
 				5B4D669923685E050080195C /* UIScreen+Ext.swift in Sources */,
 				1F501DAA23D0628800E79FE3 /* BreweriesListView.swift in Sources */,
 			);
