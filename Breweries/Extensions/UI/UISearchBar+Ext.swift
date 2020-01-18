@@ -16,7 +16,8 @@ extension UISearchBar {
             searchTextField.backgroundColor = .white
             searchTextField.tintColor = R.color.darkGrassGreen()
         } else {
-            for textField in subviews.first!.subviews where textField is UITextField {
+            guard let subviewsFirst = subviews.first else { return }
+            for textField in subviewsFirst.subviews where textField is UITextField {
                 textField.subviews.first?.backgroundColor = .white
                 textField.subviews.first?.layer.cornerRadius = 10.5
                 textField.subviews.first?.layer.masksToBounds = true

@@ -10,31 +10,51 @@ import Moya
 
 enum NetworkService {
     case getBreweries
+    case searchBreweries
 }
 
 extension NetworkService: TargetType {
-    public var baseURL: URL {
-        let url = URL(string: "https://api.openbrewerydb.org")
-        return url!
+    var baseURL: URL {
+        guard let url = URL(string: "https://api.openbrewerydb.org") else {
+            fatalError("baseURL could not be configured")
+        }
+        return url
     }
     
-    public var path: String {
-        "/breweries"
+    var path: String {
+        switch self {
+        case .getBreweries:
+            return  "/breweries"
+        case .searchBreweries:
+            return "/breweries?by_name=%20{query}_"
+        }
     }
     
-    public var method: Method {
-        .get
+    var method: Method {
+        switch self {
+        case .getBreweries, .searchBreweries:
+            return .get
+        }
     }
     
-    public var sampleData: Data {
-        Data()
+    var sampleData: Data {
+        switch self {
+        case .getBreweries, .searchBreweries:
+            return Data()
+        }
     }
     
-    public var task: Task {
-        .requestPlain
+    var task: Task {
+        switch self {
+        case .getBreweries, .searchBreweries:
+            return .requestPlain
+        }
     }
     
-    public var headers: [String : String]? {
-        ["Content-type": "application/json"]
+    var headers: [String: String]? {
+        switch self {
+        case .getBreweries, .searchBreweries:
+            return ["Content-type": "application/json"]
+        }
     }
 }

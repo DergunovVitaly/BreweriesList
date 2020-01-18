@@ -11,7 +11,7 @@ import Foundation
 
 extension UILabel {
     
-    func addPrefixWithSpecialColorOnLabel(text: String, prefix: String, color: UIColor) {
+    func addCustomColorTo(text: String, prefix: String, color: UIColor) {
         self.attributedText = text.add(prefix: prefix).attributedStringForPartiallyColoredText(prefix, with: color)
     }
 }

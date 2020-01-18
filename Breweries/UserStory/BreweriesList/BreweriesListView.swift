@@ -27,7 +27,7 @@ class BreweriesListView: UIView {
         backgroundColor = .white
         
         addSubview(imageView)
-        imageView.image = R.image.manWithBear()
+        imageView.image = Images.manWithBear()
         imageView.snp.makeConstraints { (make) in
             make.size.equalTo(CGSize(width: 145, height: 245))
             make.bottom.trailing.equalToSuperview()
@@ -38,7 +38,7 @@ class BreweriesListView: UIView {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 70
         tableView.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 250, right: 0)
         tableView.showsVerticalScrollIndicator = false
         
         addSubview(tableView)

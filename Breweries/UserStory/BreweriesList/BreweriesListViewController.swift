@@ -31,7 +31,6 @@ class BreweriesListViewController: UIViewController {
         viewModel.fetch { [unowned self] (result) in
             switch result {
             case .success(let brewery):
-                print(brewery)
                 self.viewModelArray = brewery
                 self.contentView.tableView.reloadData()
             case .failure(let error):
@@ -60,7 +59,20 @@ extension BreweriesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BreweriesListCell.self))
             as? BreweriesListCell else { return UITableViewCell() }
+        cell.delegate = self
         cell.update(viewModel: viewModelArray[indexPath.row])
         return cell
+    }
+}
+
+extension BreweriesListViewController: BreweriesListCellDelegate {
+    func tapOnShowOnMapButtonEvent(latitudeString: String, longitudeString: String) {
+        navigationController?.pushViewController(LocationViewController(latitudeString: latitudeString,
+                                                                        longitudeString: longitudeString),
+                                                 animated: true)
+    }
+    
+    func tapOnWebSiteLabelEvent(url: URL) {
+        navigationController?.present(SafariViewController(url: url), animated: true, completion: nil)
     }
 }

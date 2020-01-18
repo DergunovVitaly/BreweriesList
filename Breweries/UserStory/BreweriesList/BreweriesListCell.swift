@@ -7,17 +7,29 @@
 //
 
 import UIKit
+import CoreLocation
+
+protocol BreweriesListCellDelegate: class {
+    func tapOnShowOnMapButtonEvent(latitudeString: String, longitudeString: String)
+    func tapOnWebSiteLabelEvent(url: URL)
+}
 
 class BreweriesListCell: UITableViewCell {
     
+    private var breweryURL: URL?
+    private var latitudeString: String?
+    private var longitudeString: String?
     private let backgroundContentView = UIView()
     private let breweryNameLabel = UILabel()
     private let breweryPhoneNumberLabel = UILabel()
     private let breweryWebSiteLabel = UILabel()
+    private let breweryCountryLabel = UILabel()
+    private let breweryStateLabel = UILabel()
     private let breweryCityLabel = UILabel()
     private let breweryStreetLabel = UILabel()
-    private let breweryCountryLabel = UILabel()
     private let showOnMapButton = UIButton()
+    
+    weak var delegate: BreweriesListCellDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
@@ -30,15 +42,27 @@ class BreweriesListCell: UITableViewCell {
     
     func update(viewModel: BreweryModelElement) {
         breweryNameLabel.text = viewModel.name
-        breweryPhoneNumberLabel.addPrefixWithSpecialColorOnLabel(text: viewModel.phone ?? "",
+        breweryPhoneNumberLabel.addCustomColorTo(text: viewModel.phone ?? "",
                                                                  prefix: Localizable.phone(),
                                                                  color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
-        breweryCityLabel.addPrefixWithSpecialColorOnLabel(text: viewModel.city ?? "",
+        breweryCityLabel.addCustomColorTo(text: viewModel.city ?? "",
                                                           prefix: Localizable.city(),
                                                           color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
-        breweryCountryLabel.addPrefixWithSpecialColorOnLabel(text: viewModel.country ?? "",
+        breweryCountryLabel.addCustomColorTo(text: viewModel.country ?? "",
                                                              prefix: Localizable.country(),
                                                              color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
+        breweryStateLabel.addCustomColorTo(text: viewModel.state ?? "",
+                                                           prefix: Localizable.state(),
+                                                           color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
+        breweryStreetLabel.addCustomColorTo(text: viewModel.street ?? "",
+                                                            prefix: Localizable.street(),
+                                                            color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
+        breweryWebSiteLabel.addCustomColorTo(text: viewModel.websiteURL ?? "",
+                                                             prefix: Localizable.webSite(),
+                                                             color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
+        breweryURL = URL(string: viewModel.websiteURL ?? "")
+        latitudeString = viewModel.latitude
+        longitudeString = viewModel.longitude
     }
     
     private func setupLayout() {
@@ -48,10 +72,19 @@ class BreweriesListCell: UITableViewCell {
         backgroundContentView.layer.borderWidth = 1
         backgroundContentView.layer.cornerRadius = 10
         backgroundContentView.backgroundColor = R.color.white()
+        breweryWebSiteLabel.isUserInteractionEnabled = true
+        
+        let labelFont: UIFont = .systemFont(ofSize: 10, weight: .medium)
+        breweryPhoneNumberLabel.font = labelFont
+        breweryWebSiteLabel.font = labelFont
+        breweryCountryLabel.font = labelFont
+        breweryStateLabel.font = labelFont
+        breweryCityLabel.font = labelFont
+        breweryStreetLabel.font = labelFont
         
         contentView.addSubview(backgroundContentView)
         backgroundContentView.snp.makeConstraints { (make) in
-             make.edges.equalTo(UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12))
+            make.edges.equalTo(UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12))
         }
         
         breweryNameLabel.font = R.font.iowanOldStyleBold(size: 16)
@@ -62,30 +95,42 @@ class BreweriesListCell: UITableViewCell {
             make.leading.equalToSuperview().offset(16)
         }
         
-        breweryPhoneNumberLabel.font = .systemFont(ofSize: 10, weight: .medium)
-        backgroundContentView.addSubview(breweryPhoneNumberLabel)
-        breweryPhoneNumberLabel.snp.makeConstraints { (make) in
+        let stackView = UIStackView(arrangedSubviews: [breweryPhoneNumberLabel,
+                                                       breweryWebSiteLabel,
+                                                       breweryCountryLabel,
+                                                       breweryStateLabel,
+                                                       breweryCityLabel,
+                                                       breweryStreetLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 4.0
+        stackView.alignment = .leading
+        stackView.isUserInteractionEnabled = true
+        backgroundContentView.addSubview(stackView)
+        stackView.snp.makeConstraints { (make) in
             make.top.equalTo(breweryNameLabel.snp.bottom).offset(2)
             make.leading.equalTo(breweryNameLabel)
         }
         
-        breweryCountryLabel.font = .systemFont(ofSize: 10, weight: .medium)
-        backgroundContentView.addSubview(breweryCountryLabel)
-        breweryCountryLabel.snp.makeConstraints { (make) in
-                  make.top.equalTo(breweryPhoneNumberLabel.snp.bottom).offset(4)
-                  make.leading.equalTo(breweryPhoneNumberLabel)
-                  make.bottom.equalToSuperview().offset(-10)
-              }
+        showOnMapButton.layer.cornerRadius = 5
+        showOnMapButton.backgroundColor = R.color.darkGrassGreen()
+        showOnMapButton.titleLabel?.font = .systemFont(ofSize: 10, weight: .medium)
+        showOnMapButton.setTitle(Localizable.showOnMap(), for: .normal)
+        backgroundContentView.addSubview(showOnMapButton)
+        showOnMapButton.snp.makeConstraints { (make) in
+            make.top.equalTo(stackView.snp.bottom).offset(6)
+            make.size.equalTo(CGSize(width: 75, height: 21))
+            make.leading.equalTo(stackView)
+            make.bottom.equalToSuperview().offset(-13)
+        }
         
-//        breweryCityLabel.font = .systemFont(ofSize: 10, weight: .medium)
-//        backgroundContentView.addSubview(breweryCityLabel)
-//        breweryCityLabel.snp.makeConstraints { (make) in
-//            make.top.equalTo(breweryPhoneNumberLabel.snp.bottom).offset(4)
-//            make.leading.equalTo(breweryPhoneNumberLabel)
-//            make.bottom.equalToSuperview().offset(-10)
-//        }
-//
-//        breweryStreetLabel.font = .systemFont(ofSize: 10, weight: .medium)
+        showOnMapButton.onTap { [unowned self] in
+            guard let latitudeString = self.latitudeString, let longitudeString = self.longitudeString else { return }
+            self.delegate?.tapOnShowOnMapButtonEvent(latitudeString: latitudeString, longitudeString: longitudeString)
+        }
         
+        breweryWebSiteLabel.addTapGesture { [unowned self] (_) in
+            guard let url = self.breweryURL else { return }
+            self.delegate?.tapOnWebSiteLabelEvent(url: url)
+        }
     }
 }

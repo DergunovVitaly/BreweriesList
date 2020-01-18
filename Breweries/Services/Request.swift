@@ -10,12 +10,12 @@ import Foundation
 import Moya
 
 protocol RequestFetch {
-    func fetch(completion: @escaping (Result<BreweryModel, Error>) -> ())
+    func fetch(completion: @escaping (Result<BreweryModel, Error>) -> Void)
 }
 
 class Request {
     
-    static func fetch(completion: @escaping (Result<BreweryModel, Error>) -> ()) {
+    static func fetch(completion: @escaping (Result<BreweryModel, Error>) -> Void) {
         let provider = MoyaProvider<NetworkService>()
         provider.request(.getBreweries) { result in
             switch result {
