@@ -23,6 +23,10 @@
 		1F501DB123D0656A00E79FE3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F501DB023D0656A00E79FE3 /* Colors.xcassets */; };
 		1F8E624423D31735000F28E3 /* SafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E624323D31735000F28E3 /* SafariViewController.swift */; };
 		1F8E624723D32560000F28E3 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E624623D32560000F28E3 /* LocationViewController.swift */; };
+		1F8E624B23D3502B000F28E3 /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E624A23D3502B000F28E3 /* DataBaseService.swift */; };
+		1F8E624D23D3520B000F28E3 /* BreweryDataBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E624C23D3520B000F28E3 /* BreweryDataBaseModel.swift */; };
+		1F8E624F23D35F75000F28E3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E624E23D35F75000F28E3 /* NetworkManager.swift */; };
+		1F8E625123D36046000F28E3 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8E625023D36046000F28E3 /* AlertViewController.swift */; };
 		1FEC457823CF8ABE0023939A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC457723CF8ABE0023939A /* R.generated.swift */; };
 		5B4D669A23685E050080195C /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4D667923685E040080195C /* UIViewController+Ext.swift */; };
 		5B4D66A123685E050080195C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B4D668423685E040080195C /* Assets.xcassets */; };
@@ -62,6 +66,10 @@
 		1F501DB023D0656A00E79FE3 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		1F8E624323D31735000F28E3 /* SafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewController.swift; sourceTree = "<group>"; };
 		1F8E624623D32560000F28E3 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		1F8E624A23D3502B000F28E3 /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
+		1F8E624C23D3520B000F28E3 /* BreweryDataBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BreweryDataBaseModel.swift; path = Breweries/Services/DataBase/BreweryDataBaseModel.swift; sourceTree = SOURCE_ROOT; };
+		1F8E624E23D35F75000F28E3 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		1F8E625023D36046000F28E3 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		1FEC457723CF8ABE0023939A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		2A1E77331F384BFC006C84D4 /* Breweries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Breweries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1E77471F384BFD006C84D4 /* BreweriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreweriesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +115,7 @@
 		1F19073723D097A1003DE597 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1F8E625023D36046000F28E3 /* AlertViewController.swift */,
 				1F19073823D097B3003DE597 /* Constants.swift */,
 			);
 			path = Helpers;
@@ -159,6 +168,7 @@
 		1F8E624823D34CD8000F28E3 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				1F8E624E23D35F75000F28E3 /* NetworkManager.swift */,
 				1F19073E23D0AFB3003DE597 /* Request.swift */,
 				1F19073A23D09968003DE597 /* NetworkServices.swift */,
 			);
@@ -168,6 +178,7 @@
 		1F8E624923D34CEE000F28E3 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
+				1F8E624A23D3502B000F28E3 /* DataBaseService.swift */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -236,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				1F19073C23D0A1FC003DE597 /* BreweryModel.swift */,
+				1F8E624C23D3520B000F28E3 /* BreweryDataBaseModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,12 +422,12 @@
 				TargetAttributes = {
 					2A1E77321F384BFC006C84D4 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					2A1E77461F384BFD006C84D4 = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 2A1E77321F384BFC006C84D4;
 					};
 				};
@@ -508,27 +520,29 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Breweries/Pods-Breweries-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlisterSwift/AlisterSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Closures/Closures.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlisterSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Closures.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -580,7 +594,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B4D66A823685E050080195C /* AppDelegate.swift in Sources */,
+				1F8E625123D36046000F28E3 /* AlertViewController.swift in Sources */,
 				1F19073923D097B3003DE597 /* Constants.swift in Sources */,
+				1F8E624B23D3502B000F28E3 /* DataBaseService.swift in Sources */,
 				1F19073D23D0A1FC003DE597 /* BreweryModel.swift in Sources */,
 				1F8E624423D31735000F28E3 /* SafariViewController.swift in Sources */,
 				C90395271FC62425006F1DC0 /* TestsAppDelegate.swift in Sources */,
@@ -590,6 +606,8 @@
 				1FEC457823CF8ABE0023939A /* R.generated.swift in Sources */,
 				1F19073623D07E3F003DE597 /* UISearchBar+Ext.swift in Sources */,
 				1F8E624723D32560000F28E3 /* LocationViewController.swift in Sources */,
+				1F8E624F23D35F75000F28E3 /* NetworkManager.swift in Sources */,
+				1F8E624D23D3520B000F28E3 /* BreweryDataBaseModel.swift in Sources */,
 				1F19074123D1E5EA003DE597 /* UILabel+Ext.swift in Sources */,
 				1F19073B23D09968003DE597 /* NetworkServices.swift in Sources */,
 				1F501DA823D0615E00E79FE3 /* BreweriesListViewController.swift in Sources */,
@@ -738,8 +756,9 @@
 			baseConfigurationReference = 46D6982E60283CB1FB544F5E /* Pods-Breweries.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U8S4E7K53C;
 				INFOPLIST_FILE = Breweries/Application/BundleFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -757,8 +776,9 @@
 			baseConfigurationReference = C73A920D68EE26D9CB659DB0 /* Pods-Breweries.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U8S4E7K53C;
 				INFOPLIST_FILE = Breweries/Application/BundleFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -778,10 +798,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U8S4E7K53C;
 				INFOPLIST_FILE = BreweriesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BreweriesTests/BreweriesTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -797,10 +823,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U8S4E7K53C;
 				INFOPLIST_FILE = BreweriesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BreweriesTests/BreweriesTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -874,8 +906,9 @@
 			baseConfigurationReference = DD542BB425EE79A45109EE7E /* Pods-Breweries.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U8S4E7K53C;
 				INFOPLIST_FILE = Breweries/Application/BundleFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -895,10 +928,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U8S4E7K53C;
 				INFOPLIST_FILE = BreweriesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BreweriesTests/BreweriesTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

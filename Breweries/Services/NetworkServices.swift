@@ -10,7 +10,7 @@ import Moya
 
 enum NetworkService {
     case getBreweries
-    case searchBreweries
+    case searchBreweries(String)
 }
 
 extension NetworkService: TargetType {
@@ -23,10 +23,8 @@ extension NetworkService: TargetType {
     
     var path: String {
         switch self {
-        case .getBreweries:
+        case .getBreweries, .searchBreweries:
             return  "/breweries"
-        case .searchBreweries:
-            return "/breweries?by_name=%20{query}_"
         }
     }
     
@@ -46,8 +44,10 @@ extension NetworkService: TargetType {
     
     var task: Task {
         switch self {
-        case .getBreweries, .searchBreweries:
+        case .getBreweries:
             return .requestPlain
+        case .searchBreweries(let name):
+            return .requestParameters(parameters: ["by_name" : name], encoding: URLEncoding.default)
         }
     }
     

@@ -8,11 +8,13 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class BreweriesListViewController: UIViewController {
+    private var viewModelArray = BreweryModel()
+    private let dataBaseService = DataBaseService()
     private let contentView = BreweriesListView()
     private let viewModel: RequestFetch = BreweriesListViewModel()
-    private var viewModelArray = BreweryModel()
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
@@ -31,6 +33,7 @@ class BreweriesListViewController: UIViewController {
         viewModel.fetch { [unowned self] (result) in
             switch result {
             case .success(let brewery):
+                brewery.forEach { self.dataBaseService.writeToDataBase(breweryModel: $0) }
                 self.viewModelArray = brewery
                 self.contentView.tableView.reloadData()
             case .failure(let error):

@@ -29,6 +29,23 @@ struct BreweryModelElement: Codable {
         case websiteURL = "website_url"
         case updatedAt = "updated_at"
     }
+    
+    static func modelFromDataBse(model: BreweryDataBaseModel) -> BreweryModelElement {
+        let newItem = BreweryModelElement(id: model.id,
+                                          name: model.name,
+                                          breweryType: model.breweryType,
+                                          street: model.street,
+                                          city: model.city,
+                                          state: model.state,
+                                          postalCode: model.postalCode,
+                                          country: model.country,
+                                          longitude: model.longitude,
+                                          latitude: model.latitude,
+                                          phone: model.phone,
+                                          websiteURL: model.websiteURL,
+                                          updatedAt: model.updatedAt)
+        return newItem
+    }
 }
 
 typealias BreweryModel = [BreweryModelElement]

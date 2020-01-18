@@ -12,6 +12,8 @@ target 'Breweries' do
   pod 'Moya/RxSwift'
   pod 'SwiftLint'
   pod 'RealmSwift'
+  pod 'ReachabilitySwift'
+  pod 'SCLAlertView'
   
   target 'BreweriesTests' do
     inherit! :search_paths

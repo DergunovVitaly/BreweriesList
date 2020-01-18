@@ -20,3 +20,6 @@
 "street" = "Street: ";
 "webSite" = "Website: ";
 "showOnMap" = "Show on map";
+"attention" = "Attention!";
+"warning" = "Warning";
+"connectToTheInternet" = "Please, connect to the Internet";
