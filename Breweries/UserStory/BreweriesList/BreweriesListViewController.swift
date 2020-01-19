@@ -51,10 +51,10 @@ class BreweriesListViewController: UIViewController {
     }
     
     private func setNavigationController() {
+        title = R.string.localizable.breweries()
         navigationController?.navigationBar.titleTextAttributes =
             [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.tintColor = .white
-        title = R.string.localizable.breweries()
         searchController.searchBar.placeholder = Localizable.search()
         searchController.searchBar.setupSearchBar()
         searchController.obscuresBackgroundDuringPresentation = false

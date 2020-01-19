@@ -76,7 +76,8 @@ class BreweriesListCell: UITableViewCell {
     }
     
     private func setupLayout() {
-        
+       
+        backgroundColor = .clear
         selectionStyle = .none
         backgroundContentView.layer.borderColor = R.color.darkGrassGreen()?.cgColor
         backgroundContentView.layer.borderWidth = 1
