@@ -55,7 +55,6 @@ class NetworkReachabilityManager {
     @objc func reachabilityChanged(note: Notification) {
         guard let reachability = note.object as? Reachability
             else { rebootReachability(); return }
-        
         switch reachability.connection {
         case .wifi:
             debugPrint("Reachable via WiFi")
@@ -67,7 +66,6 @@ class NetworkReachabilityManager {
                                               style: .error, closeButtonTitle: Localizable.ok())
             debugPrint("Network not reachable")
         }
-        
         delegate?.reachabilityChanged(connection: reachability.connection)
     }
 }

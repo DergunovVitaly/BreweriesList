@@ -23,7 +23,7 @@ class DataBaseService {
     
     func readFromDataBase() -> BreweryModel {
         guard let realm = try? Realm() else { return [] }
-        let breweries = realm.objects(BreweryDataBaseModel.self).sorted(byKeyPath: "name", ascending: false)
+        let breweries = realm.objects(BreweryDataBaseModel.self).sorted(byKeyPath: "id", ascending: false)
         let items = breweries.map { BreweryModelElement.modelFromDataBse(model: $0) }
         return Array(items)
     }

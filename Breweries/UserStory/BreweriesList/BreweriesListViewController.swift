@@ -12,6 +12,7 @@ import RealmSwift
 import Reachability
 
 class BreweriesListViewController: UIViewController {
+    
     private var viewModelArray = BreweryModel()
     private var filteredViewModelArray = BreweryModel()
     private let dataBaseService = DataBaseService()
@@ -22,6 +23,11 @@ class BreweriesListViewController: UIViewController {
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
         return text.isEmpty
+    }
+    
+    private var isActiveSearchBar: Bool {
+        let activeSearch = searchController.isActive && !searchBarIsEmpty
+        return activeSearch
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -40,8 +46,8 @@ class BreweriesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setApperanceForNavBar(backgroundColor: R.color.darkGrassGreen())
         setNavigationController()
+        setApperanceForNavBar(backgroundColor: R.color.darkGrassGreen())
     }
     
     private func setNavigationController() {
@@ -51,6 +57,7 @@ class BreweriesListViewController: UIViewController {
         title = R.string.localizable.breweries()
         searchController.searchBar.placeholder = Localizable.search()
         searchController.searchBar.setupSearchBar()
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         definesPresentationContext = true
         navigationItem.searchController = searchController
@@ -59,23 +66,16 @@ class BreweriesListViewController: UIViewController {
 
 extension BreweriesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive && !searchBarIsEmpty {
-            return filteredViewModelArray.count
-        } else {
-            return viewModelArray.count
-        }
+        let count = isActiveSearchBar ? filteredViewModelArray.count : viewModelArray.count
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BreweriesListCell.self))
             as? BreweriesListCell else { return UITableViewCell() }
         cell.delegate = self
-        
-        if searchController.isActive && !searchBarIsEmpty {
-            cell.update(viewModel: filteredViewModelArray[indexPath.row])
-        } else {
-            cell.update(viewModel: viewModelArray[indexPath.row])
-        }
+        cell.update(viewModel: isActiveSearchBar ? filteredViewModelArray[indexPath.row] :
+            viewModelArray[indexPath.row])
         return cell
     }
 }
@@ -100,7 +100,7 @@ extension BreweriesListViewController: NetworkReachabilityManagerDelegate {
                 switch result {
                 case .success(let brewery):
                     brewery.forEach { self.dataBaseService.writeToDataBase(breweryModel: $0) }
-                    self.viewModelArray = brewery
+                    self.viewModelArray = self.dataBaseService.readFromDataBase()
                 case .failure(let error):
                     self.viewModelArray = self.dataBaseService.readFromDataBase()
                     print(error)
@@ -129,7 +129,7 @@ extension BreweriesListViewController: UISearchResultsUpdating {
             case .failure(let error):
                 print(error)
             }
+            self.contentView.tableView.reloadData()
         }
-        self.contentView.tableView.reloadData()
     }
 }

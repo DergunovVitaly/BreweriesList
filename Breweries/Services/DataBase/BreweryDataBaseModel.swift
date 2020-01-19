@@ -24,7 +24,7 @@ class BreweryDataBaseModel: Object {
     @objc dynamic var websiteURL: String?
 
     override static func primaryKey() -> String? {
-        return "name"
+        return "id"
     }
     
     static func dataBaseModelFrom(model: BreweryModelElement) -> BreweryDataBaseModel {
