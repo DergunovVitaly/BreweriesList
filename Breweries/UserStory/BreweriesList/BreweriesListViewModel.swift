@@ -17,5 +17,4 @@ class BreweriesListViewModel: RequestFetch {
     func fetch(completion: @escaping (Result<BreweryModel, Error>) -> Void) {
         Request.fetch(completion: completion)
     }
-    
 }

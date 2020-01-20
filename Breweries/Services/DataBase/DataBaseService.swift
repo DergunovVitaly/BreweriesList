@@ -12,13 +12,11 @@ import RealmSwift
 class DataBaseService {
     
     func writeToDataBase(breweryModel: BreweryModelElement) {
-        DispatchQueue.global().async {
             guard let realm = try? Realm() else { return }
             let newItem = BreweryDataBaseModel.dataBaseModelFrom(model: breweryModel)
             try? realm.write {
                 realm.add(newItem, update: Realm.UpdatePolicy.modified)
             }
-        }
     }
     
     func readFromDataBase() -> BreweryModel {
